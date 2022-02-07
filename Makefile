@@ -9,6 +9,5 @@ push-image:
 	docker push ghcr.io/incaya/incaya-documentation:latest
 
 publish: build-image push-image ## Build then push Docker image on Github registry
-	docker build -t incaya-documentation --force-rm .
 
 .PHONY: publish

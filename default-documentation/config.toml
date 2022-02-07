@@ -1,0 +1,45 @@
+baseURL = "http://localhost"
+languageCode = 'fr'
+defaultContentLanguage = 'fr'
+title = "Documentation Incaya"
+theme = "hugo-whisper-theme"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+
+# Controls how many words are printed in the content summary on the docs homepage.
+# See https://gohugo.io/content-management/summaries/
+summaryLength = 30
+
+[[menu.main]]
+    name = "Accueil"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Documentation"
+    url = "/docs/"
+    weight = 2
+
+[[menu.main]]
+    name = "ADR."
+    url = "/adrs/"
+    weight = 3
+
+[params]
+  google_analytics_id=""
+  homepage_button_link = '/docs'
+  homepage_button_text = 'Lire la documentation'
+  homepage_intro = 'Une introduction à mettre dans le contenu du fichier _index.md à la racine du répertoire de la documentation.'
+  enable_anchor_link = true
+  mainSections = ['docs', 'adrs']
+
+  [params.logo]
+      mobile = "/images/logo-mobile.svg"
+      standard  = "/images/logo.svg"
