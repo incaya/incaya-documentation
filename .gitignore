@@ -1,2 +1,4 @@
 default-documentation/.hugo_build.lock
 default-documentation/config.toml
+default-documentation/resources/_gen/*
+default-documentation/public/*
