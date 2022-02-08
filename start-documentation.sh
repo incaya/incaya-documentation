@@ -2,8 +2,10 @@
 
 # Start Excalidraw
 cd /excalidraw && yarn start &
-  
-# Start the second process
+
+# Setup hugo configuration if not exist (aka nod mounted in the docker container)
+cp -n /documentation/config-default.toml /documentation/config.toml
+# Start hugo
 cd /documentation && hugo server --bind 0.0.0.0 --navigateToChanged &
   
 # Wait for any process to exit
