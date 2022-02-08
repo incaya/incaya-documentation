@@ -3,6 +3,7 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 draft: false
 weight: 100
+summary: "resumé de l'ADR"
 ---
 
 Date: {{ .Date | time.Format ":date_long"  }}
