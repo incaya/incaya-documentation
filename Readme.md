@@ -218,6 +218,7 @@ doc-generate: ## Generate statics for documentation ready for publication
 - [ ] Gérer le poids des documents générés
 - [ ] Mieux gérer le titre des documents générés
 - [ ] Améliorer la page de liste des ADR
+- [ ] Ajouter le moteur de recherche
 
 ## Mainteneur
 
