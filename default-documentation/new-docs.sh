@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p 'Quel est le titre de la documention ? (repondre a pour annuler) : ' TITLE
+# read -p 'Quel est le titre de la documention ? (repondre a pour annuler) : ' TITLE
 
 if [ "$TITLE" = "a" ]; then
     #Votre code, par exemple:
@@ -12,3 +12,7 @@ else
     hugo new docs/$SLUG.md
     exit
 fi
+
+# NB_FILES=$(echo ls ./content-init/docs | wc -l)
+# ((NB_FILES+=1))
+# echo weight : $NB_FILES
