@@ -51,6 +51,13 @@ body {
   padding-right: $grid-gutter-width;
 }
 
+p.adr-meta {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: -0.6rem;
+  color: $gray-600;
+}
+
 // Display breakpoints for DEV
 // body:after {
 //   color: #000000;

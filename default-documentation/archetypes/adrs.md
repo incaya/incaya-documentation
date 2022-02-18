@@ -1,16 +1,18 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: #TITLE
+slug: #SLUG
 date: {{ .Date }}
 draft: false
-weight: 100
+weight: #WEIGHT
 summary: "resumé de l'ADR"
+status: proposed
 ---
 
 Date: {{ .Date | time.Format ":date_long"  }}
 
-Décideurs: [liste des personnes impliquée dans la décision] <!-- optional -->
-Ticket.s concerné.s: [description | URL ticket/issue Github] <!-- optional -->
-Pull Request: [PR URL] <!-- optional -->
+- Décideurs: [liste des personnes impliquée dans la décision] <!-- optional -->
+- Ticket.s concerné.s: [description | URL ticket/issue Github] <!-- optional -->
+- Pull Request: [PR URL] <!-- optional -->
 
 ## Statut
 

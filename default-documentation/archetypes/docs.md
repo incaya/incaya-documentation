@@ -1,8 +1,9 @@
 ---
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
+title: #TITLE
+slug: #SLUG
 date: {{ .Date }}
 draft: false
-weight: 100
+weight: #WEIGHT
 summary: "resumé du document"
 ---
 
