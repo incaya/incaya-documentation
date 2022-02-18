@@ -12,5 +12,6 @@ else
     # ((NB_FILES+=1))
     hugo new adrs/$SLUG.md
     sed -i -e "s/#SLUG/$SLUG/g" -e "s/#TITLE/$TITLE/g"  -e "s/#WEIGHT/$NB_FILES/g" ./content/adrs/$SLUG.md
+    chmod 777 ./content/adrs/$SLUG.md
     exit
 fi
