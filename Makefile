@@ -4,6 +4,7 @@ help: # Display available commands
 build-image:
 	rm -f default-documentation/config.toml
 	rm -rf default-documentation/public
+	rm -rf default-documentation/content
 	docker build -t incaya-documentation --force-rm .
 
 push-image:
