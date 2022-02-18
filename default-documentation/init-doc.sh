@@ -13,5 +13,6 @@ if test -f "$GLOBAL"; then
     echo "La documentation est bien initialisée."
 else 
     cp -r content-init/* content/
+    chmod -R 777 content
     echo "La documentation est maintenant initialisée."
 fi

@@ -1,0 +1,5 @@
+<div class="summary mb-2">
+  <h2 class="title-summary"><a href="{{ .Permalink }}">{{ .Params.weight }} - {{ .Title }}</a></h2>
+  <p class="adr-meta">Crée le {{ .Date | time.Format ":date_short"  }} - statut: {{ .Params.status }}</p>
+  <p>{{ .Summary }}</p>
+</div>
