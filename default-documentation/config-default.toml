@@ -8,6 +8,13 @@ pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClasses = true
 
+[outputFormats.SearchIndex]
+baseName = "search"
+mediaType = "application/json"
+
+[outputs]
+home = [ "HTML", "SearchIndex" ]
+
 [module]
   [module.hugoVersion]
     extended = true
