@@ -1,8 +1,9 @@
 FROM node:16-stretch
 
-RUN wget https://github.com/gohugoio/hugo/releases/download/v0.94.2/hugo_extended_0.94.2_Linux-64bit.deb
-RUN dpkg -i hugo_extended_0.94.2_Linux-64bit.deb
+RUN wget https://github.com/gohugoio/hugo/releases/download/v0.96.0/hugo_extended_0.96.0_Linux-64bit.deb
+RUN dpkg -i hugo_extended_0.96.0_Linux-64bit.deb
 COPY /default-documentation /documentation
+RUN rm -f /documentation/.hugo_build.lock
 RUN git clone https://github.com/excalidraw/excalidraw.git excalidraw
 RUN cd excalidraw && yarn
 
