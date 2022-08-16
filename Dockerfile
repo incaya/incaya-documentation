@@ -4,7 +4,7 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v0.101.0/hugo_extend
 RUN dpkg -i hugo_extended_0.101.0_Linux-64bit.deb
 COPY /default-documentation /documentation
 RUN rm -f /documentation/.hugo_build.lock
-RUN git clone https://github.com/excalidraw/excalidraw.git excalidraw
+RUN git clone -b v0.12.0 https://github.com/excalidraw/excalidraw.git excalidraw
 RUN cd excalidraw && yarn
 
 EXPOSE 1313
