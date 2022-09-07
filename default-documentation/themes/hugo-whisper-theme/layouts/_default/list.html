@@ -9,7 +9,7 @@
   {{ .Content }}
 </div>
 
-{{ range.Pages }}
+{{ range .Pages.ByWeight }}
 {{ .Render "summary" }}
 {{ end }}
 
