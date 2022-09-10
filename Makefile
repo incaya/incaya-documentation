@@ -5,7 +5,7 @@ build-image:
 	rm -f default-documentation/config.toml
 	rm -rf default-documentation/public
 	rm -rf default-documentation/content
-	docker build -t incaya-documentation --force-rm .
+	docker build -t incaya-documentation --target production --force-rm .
 
 push-image:
 	docker tag incaya-documentation ghcr.io/incaya/incaya-documentation:latest
