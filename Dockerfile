@@ -2,8 +2,7 @@ FROM node:16-slim AS base
 
 RUN apt-get update && apt-get install -y \
     wget \
-    git \
-    && rm -rf /var/lib/apt/lists/* && wget https://github.com/gohugoio/hugo/releases/download/v0.102.3/hugo_extended_0.102.3_Linux-64bit.deb && dpkg -i hugo_extended_0.102.3_Linux-64bit.deb
+    git && rm -rf /var/lib/apt/lists/* && wget https://github.com/gohugoio/hugo/releases/download/v0.104.3/hugo_extended_0.104.3_linux-amd64.deb && dpkg -i hugo_extended_0.104.3_linux-amd64.deb
 
 FROM base AS hugo
 
