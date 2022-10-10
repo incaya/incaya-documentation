@@ -119,8 +119,9 @@ L'image Docker est fournie avec une configuration par défaut de Hugo. Cette con
 
 ```toml
 baseURL = "http://localhost"
-languageCode = 'fr'
-defaultContentLanguage = 'fr'
+languageCode = 'en'
+defaultContentLanguage = 'en'
+archetypeDir= 'archetypes_en'
 title = "Documentation Incaya"
 theme = "hugo-whisper-theme"
 
