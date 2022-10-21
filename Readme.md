@@ -24,6 +24,9 @@ Nous sommes aussi convaincus qu'une bonne documentation d'un projet informatique
 
 ## Utilisation avec Docker
 
+> Il existe deux versions de l'image docker : une avec des contenus en français `ghcr.io/incaya/incaya-documentation:fr` et l'autre en anglais `ghcr.io/incaya/incaya-documentation:en`. Selon la langue avec laquelle vous souhaitez gérer votre documentation, pensez à utiliser la bonne image !
+> Pour les exemples à suivre, on utilise la version française de l'image, qui est celle par défaut.
+
 Soit un projet dont la documentation est contenue dans le répertoire `documentations` organisé de la manière suivante :
 
 ```bash
@@ -43,7 +46,7 @@ docker run --rm --name project-documentation -d \
 	-v documentations:/documentation/content \
 	-p 3000:3000 \
 	-p 1313:1313 \
-	ghcr.io/incaya/incaya-documentation:latest
+	ghcr.io/incaya/incaya-documentation:fr
 ```
 
 Hugo peut aussi utiliser des fichiers spécifiques pour gérer les pages d'accueil (accueil général, accueil documentation, accueil ADR). Vous pouvez générer ses fichiers en ligne de commande depuis le conteneur :
@@ -70,7 +73,7 @@ version: "3.7"
 
 services:
   documentation:
-    image: ghcr.io/incaya/incaya-documentation:latest
+    image: ghcr.io/incaya/incaya-documentation:fr
     volumes:
       - ./documentations:/documentation/content
     ports:
@@ -121,7 +124,6 @@ L'image Docker est fournie avec une configuration par défaut de Hugo. Cette con
 baseURL = "http://localhost"
 languageCode = 'en'
 defaultContentLanguage = 'en'
-archetypeDir= 'archetypes_en'
 title = "Documentation Incaya"
 theme = "hugo-whisper-theme"
 
@@ -175,7 +177,7 @@ version: "3.7"
 
 services:
   documentation:
-    image: ghcr.io/incaya/incaya-documentation:latest
+    image: ghcr.io/incaya/incaya-documentation:en
     volumes:
       - ./documentations:/documentation/content
       - ./hugo-config.toml:/documentation/config.toml
@@ -195,7 +197,7 @@ version: "3.7"
 
 services:
   documentation:
-    image: ghcr.io/incaya/incaya-documentation:latest
+    image: ghcr.io/incaya/incaya-documentation:fr
     volumes:
       - ./documentations:/documentation/content
       - ./doc-public:/documentation/public
@@ -214,12 +216,6 @@ doc-generate: ## Generate statics for documentation ready for publication
 	'
 ```
 
-## Reste à faire
-
-- [ ] Gérer le poids des documents générés
-- [ ] Mieux gérer le titre des documents générés
-- [ ] Améliorer la page de liste des ADR
-- [ ] Ajouter le moteur de recherche
 
 ## Mainteneur
 
