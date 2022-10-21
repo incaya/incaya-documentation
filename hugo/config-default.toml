@@ -1,4 +1,4 @@
-baseURL = "http://localhost"
+baseURL = "http://localhost:1313"
 languageCode = 'fr'
 defaultContentLanguage = 'fr'
 title = "Documentation Incaya"
@@ -47,9 +47,9 @@ summaryLength = 30
   google_analytics_id=""
   homepage_button_link = 'docs'
   homepage_button_text = 'Lire la documentation'
-  homepage_intro = 'Une introduction à mettre dans le contenu du fichier _index.md à la racine du répertoire de la documentation.'
-  enable_anchor_link = true
   mainSections = ['docs', 'adrs', 'recherche']
+  footer_link_url = 'https://www.incaya.fr/'
+  footer_link_title = 'INCAYA'
 
   [params.logo]
       mobile = "images/logo-mobile.svg"

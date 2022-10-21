@@ -124,8 +124,7 @@ L'image Docker est fournie avec une configuration par défaut de Hugo. Cette con
 baseURL = "http://localhost"
 languageCode = 'en'
 defaultContentLanguage = 'en'
-title = "Documentation Incaya"
-theme = "hugo-whisper-theme"
+title = "My Documentation"
 
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
@@ -150,24 +149,22 @@ summaryLength = 30
     url = "/adrs/"
     weight = 3
 
+[[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 4
+
 [params]
   google_analytics_id=""
-  homepage_button_link = '/docs'
-  homepage_button_text = 'Lire la documentation'
-  homepage_intro = 'Une introduction à mettre dans le contenu du fichier _index.md à la racine du répertoire de la documentation.'
+  homepage_button_link = 'adrs'
+  homepage_button_text = 'see adrs'
   enable_anchor_link = true
-  mainSections = ['docs', 'adrs']
+  mainSections = ['docs', 'adrs', 'search']
+  footer_link_url = 'https://www.mydomaine/'
+  footer_link_title = 'mydomaine'
 
-  [params.homepage_meta_tags]
-    meta_description = "Hugo Whisper is a documentation theme built with Hugo."
-    meta_og_title = "Hugo Whisper Theme"
-    meta_og_type = "website"
-    meta_og_url = "https://hugo-whisper.netlify.app"
-    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
-    meta_og_description = "Hugo Whisper is a documentation theme built with Hugo."
-    meta_twitter_card = "summary"
-    meta_twitter_site = "@zerostaticio"
-    meta_twitter_creator = "@zerostaticio"
+  [params.logo]
+      standard  = "images/mylogo.png"
 ```
 
 Il suffit alors de monter se fichier dans le conteneur Docker, par exemple avec Docker Compose ou l'on change aussi le port de Hugo en `6666` et le port exposé de Excalidraw en `6667`:
@@ -180,6 +177,7 @@ services:
     image: ghcr.io/incaya/incaya-documentation:en
     volumes:
       - ./documentations:/documentation/content
+      - ./logo.png:/documentation/static/images/mylogo.png
       - ./hugo-config.toml:/documentation/config.toml
     environment:
       - HUGO_PORT=6666
