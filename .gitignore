@@ -3,3 +3,4 @@ hugo/config.toml
 hugo/resources/_gen/*
 hugo/public/*
 hugo/content
+hugo/archetypes

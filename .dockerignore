@@ -1,1 +1,3 @@
 hugo/config.toml
+hugo/.hugo_build.lock
+hugo/content/*

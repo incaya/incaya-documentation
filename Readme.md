@@ -170,7 +170,7 @@ summaryLength = 30
     meta_twitter_creator = "@zerostaticio"
 ```
 
-Il suffit alors de monter se fichier dans le conteneur Docker, par exemple avec Docker Compose :
+Il suffit alors de monter se fichier dans le conteneur Docker, par exemple avec Docker Compose ou l'on change aussi le port de Hugo en `6666` et le port exposé de Excalidraw en `6667`:
 
 ```yaml
 version: "3.7"
@@ -181,9 +181,11 @@ services:
     volumes:
       - ./documentations:/documentation/content
       - ./hugo-config.toml:/documentation/config.toml
+    environment:
+      - HUGO_PORT=6666
     ports:
-      - 3000:3000
-      - 1313:1313
+      - 6666:6666
+      - 6667:3000
 ```
 
 ## Publication
