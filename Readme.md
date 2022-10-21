@@ -200,7 +200,7 @@ services:
     image: ghcr.io/incaya/incaya-documentation:fr
     volumes:
       - ./documentations:/documentation/content
-      - ./doc-public:/documentation/public
+      - ./published-documentation:/documentation/public
       - ./hugo-config.toml:/documentation/config.toml
     ports:
       - 3000:3000
@@ -216,6 +216,58 @@ doc-generate: ## Generate statics for documentation ready for publication
 	'
 ```
 
+Et voici un exemple de workflow Github pour automatiser le déploiement :
+
+```yaml
+//in .github/workflows/documentation.yml
+name: Doc on GitHub Pages
+
+on:
+  push:
+    branches:
+      - develop # Set a branch to deploy
+  pull_request:
+
+jobs:
+  # JOB to run change detection
+  changes:
+    runs-on: ubuntu-latest
+    # Set job outputs to values from filter step
+    outputs:
+      deploy: ${{ steps.filter.outputs.deploy }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            deploy:
+              - 'documentations/**'
+  deploy:
+    needs: changes
+    if: |
+      ${{ needs.changes.outputs.deploy == 'true' }} &&
+      ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+      - name: Build
+        run: make doc-generate
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./published-documentation
+```
 
 ## Mainteneur
 
