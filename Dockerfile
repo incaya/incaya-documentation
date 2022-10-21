@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 
 FROM base AS hugo
 
-COPY /default-documentation /documentation
+COPY /hugo /documentation
 RUN chmod -R 777 /documentation && rm -f /documentation/.hugo_build.lock
 
 FROM base AS excalidraw
@@ -21,6 +21,20 @@ COPY --from=hugo /documentation /documentation
 COPY --from=hugo /usr/local/bin/hugo /usr/local/bin/hugo
 COPY --from=excalidraw /excalidraw /excalidraw
 RUN chmod -R 777 /documentation /excalidraw/node_modules/.cache
-EXPOSE 1313
 COPY start-documentation.sh start-documentation.sh
+
+FROM production AS french
+
+COPY /documents/fr/archetypes /documentation/archetypes
+COPY /documents/fr/content /documentation/content-init
+RUN chmod -R 777 /documentation/archetypes /documentation/content-init
+EXPOSE 1313
+CMD ./start-documentation.sh
+
+FROM production AS english
+
+COPY /documents/en/archetypes /documentation/archetypes
+COPY /documents/en/content /documentation/content-init
+RUN chmod -R 777 /documentation/archetypes /documentation/content-init
+EXPOSE 1313
 CMD ./start-documentation.sh
