@@ -2,7 +2,6 @@ baseURL = "http://localhost"
 languageCode = 'fr'
 defaultContentLanguage = 'fr'
 title = "Documentation Incaya"
-theme = "hugo-whisper-theme"
 
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
