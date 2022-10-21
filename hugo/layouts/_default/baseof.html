@@ -7,7 +7,7 @@
   <title>{{ block "title" . }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ block "meta_tags" . }}{{end}}
-  <link rel="icon" href="{{ "favicon.png" | absURL}}">
+  <link rel="icon" href="{{ " favicon.png" | absURL}}">
 
   {{ if .Site.IsServer }}
   {{ $style := resources.Get "scss/style.scss" | toCSS (dict "targetPath" "css/style.css" "enableSourceMap" true) }}
@@ -18,6 +18,9 @@
   {{ end }}
 
   {{ block "header_css" . }}{{ end }}
+  <script type="text/javascript">
+    window.baseUrl = '{{ .Site.BaseURL }}';
+  </script>
 
 </head>
 
@@ -66,7 +69,6 @@
   <script type="text/javascript" src="{{ ($scripts | minify | fingerprint).RelPermalink }}"></script>
   {{ end }}
 
-  {{ partial "google-analytics.html" . }}
 
 </body>
 

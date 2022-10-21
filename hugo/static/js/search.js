@@ -1,4 +1,19 @@
 "use strict";
+
+function getSearchPrefix() {
+  if (!window.baseUrl) return "/search.json";
+
+  const shortUrl = window.baseUrl
+    .replace("https", "http")
+    .replace("http://", "");
+  const urlParts = shortUrl.split("/");
+
+  return Array.isArray(urlParts) && !!urlParts[1]
+    ? `/${urlParts[1]}/search.json`
+    : "/search.json";
+}
+const searchUrl = getSearchPrefix();
+
 window.SearchApp = {
   searchField: document.getElementById("searchField"),
   searchButton: document.getElementById("searchButton"),
@@ -8,7 +23,7 @@ window.SearchApp = {
   searchIndex: {},
 };
 
-axios.get("/search.json").then((response) => {
+axios.get(searchUrl).then((response) => {
   SearchApp.searchData = response.data;
   SearchApp.searchIndex = lunr(function () {
     this.ref("uri");
@@ -18,17 +33,17 @@ axios.get("/search.json").then((response) => {
     this.b(0);
     response.data.forEach((e) => {
       this.add({
-        "uri": e.uri,
-        "title": e.title,
-        "content": e.content,
+        uri: e.uri,
+        title: e.title,
+        content: e.content,
       });
     });
   });
 });
 
 SearchApp.searchButton.addEventListener("click", search);
-document.getElementById('searchField').onkeydown = function(e){
-  if(e.key === 'Enter' && !!e.target.value){
+document.getElementById("searchField").onkeydown = function (e) {
+  if (e.key === "Enter" && !!e.target.value) {
     search();
   }
 };
@@ -37,13 +52,16 @@ function search() {
   let searchText = SearchApp.searchField.value;
   let resultList = SearchApp.searchIndex.search(searchText);
   let results = resultList.map((entry) => {
-    let data = SearchApp.searchData.find(data => data.uri === entry.ref);
+    let data = SearchApp.searchData.find((data) => data.uri === entry.ref);
     return data;
   });
   if (results.length) {
-    SearchApp.display.innerText = results.length > 1 ? `${results.length} résultats pour votre recherche.` : "1 résultat pour votre recherche.";
+    SearchApp.display.innerText =
+      results.length > 1
+        ? `${results.length} résultats pour votre recherche.`
+        : "1 résultat pour votre recherche.";
   } else {
-    SearchApp.display.innerText = `Aucun résltat pour la recherche "${searchText}".`
+    SearchApp.display.innerText = `Aucun résltat pour la recherche "${searchText}".`;
   }
   display(results);
 }
@@ -52,25 +70,24 @@ function display(list) {
   SearchApp.output.innerHTML = "";
   if (list.length > 0) {
     list.forEach((el) => {
-        const div = document.createElement("div");
-        div.class = "summary mb-2";
-        const h2 = document.createElement("h2");
-        h2.class = "title-summary";
-        const a = document.createElement("a");
-        a.href = el.uri;
-        a.text = el.title;
-        h2.appendChild(a);
-        div.appendChild(h2);
-        const pMeta = document.createElement("p");
-        pMeta.class = "adr-meta";
-        pMeta.innerHTML = `Type : ${el.categories[0]}`;
-        const p = document.createElement("p");
-        p.innerHTML = el.description;
-        div.appendChild(pMeta);
-        div.appendChild(p);
-        SearchApp.output.appendChild(div);
+      const div = document.createElement("div");
+      div.class = "summary mb-2";
+      const h2 = document.createElement("h2");
+      h2.class = "title-summary";
+      const a = document.createElement("a");
+      a.href = el.uri;
+      a.text = el.title;
+      h2.appendChild(a);
+      div.appendChild(h2);
+      const pMeta = document.createElement("p");
+      pMeta.class = "adr-meta";
+      pMeta.innerHTML = `Type : ${el.categories[0]}`;
+      const p = document.createElement("p");
+      p.innerHTML = el.description;
+      div.appendChild(pMeta);
+      div.appendChild(p);
+      SearchApp.output.appendChild(div);
     });
     SearchApp.searchField.value = "";
   }
 }
-
