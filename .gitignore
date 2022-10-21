@@ -1,5 +1,5 @@
-default-documentation/.hugo_build.lock
-default-documentation/config.toml
-default-documentation/resources/_gen/*
-default-documentation/public/*
-default-documentation/content
+hugo/.hugo_build.lock
+hugo/config.toml
+hugo/resources/_gen/*
+hugo/public/*
+hugo/content
