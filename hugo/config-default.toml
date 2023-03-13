@@ -17,7 +17,7 @@ home = [ "HTML", "SearchIndex" ]
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.104.3"
+    min = "0.111.3"
 
 # Controls how many words are printed in the content summary on the docs homepage.
 # See https://gohugo.io/content-management/summaries/
